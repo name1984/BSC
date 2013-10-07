@@ -146,15 +146,15 @@ $("#grid").jqGrid({
    	],
    	rowNum:10,
    	rowList:[10,20,30],
-   	pager: '#grid',
+   	pager: '#pager',
    	sortname: 'id',
     viewrecords: true,
     sortorder: "desc",
 	editurl: "clientArray",
 	caption: "Using navigator"
 });
-jQuery("#43rowed3").jqGrid('navGrid',"#p43rowed3",{edit:false,add:false,del:false});
-jQuery("#43rowed3").jqGrid('inlineNav',"#p43rowed3");
+jQuery("#grid").jqGrid('navGrid',"#pager",{edit:false,add:false,del:false});
+jQuery("#grid").jqGrid('inlineNav',"#pager");
 
 {% endblock %}
 {% block content %}
