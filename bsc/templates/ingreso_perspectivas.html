@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% block librerias %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "js/jquery.jq.Grid-4.5.2/css/ui.jqgrid.css" %}"/>
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "js/jquery.jq.Grid-4.5.2/plugins/ui.multiselect.css" %}"/>
+
+ <script src="{% static "js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js" %}"></script>
+ <script src="{% static "js/jquery.layout.js" %}"></script>
+ <script src="{% static "js/jquery.jq.Grid-4.5.2/src/i18n/grid.locale-es.js" %}"></script> 
+ <script type="text/javascript">
+   $.jgrid.no_legacy_api = true;
+   $.jgrid.useJSON = true;
+ </script>
+ <script src="{% static "js/jquery.jq.Grid-4.5.2/plugins/ui.multiselect.js" %}"></script>
+ <script src="{% static "js/jquery.jq.Grid-4.5.2/src/jquery.jqGrid.js" %}"></script>    
+ <script src="{% static "js/jquery.jq.Grid-4.5.2/plugins/jquery.tablednd.js" %}"></script> 
+ <script src="{% static "js/jquery.jq.Grid-4.5.2/plugins/jquery.contextmenu.js" %}"></script>    
+{% endblock %} 
+{% block jquery %}
+/*
+$('body').layout({
+ resizerClass: 'ui-state-default',
+ west__onresize: function (pane, $Pane) {
+     jQuery("#west-grid").jqGrid('setGridWidth',$Pane.innerWidth()-2);
+ }
+});
+//---------------------------------------------------------------------
+$.jgrid.defaults = $.extend($.jgrid.defaults,{loadui:"enable"});
+
+var maintab =jQuery('#tabs','#RightPane').tabs({
+    add: function(e, ui) {
+    // append close thingy
+	$(ui.tab).parents('li:first')
+	    .append('<span class="ui-tabs-close ui-icon ui-icon-close" title="Close Tab"></span>')
+	    .find('span.ui-tabs-close')
+	    .show()
+
+	    .click(function() {
+		maintab.tabs('remove', $('li', maintab).index($(this).parents('li:first')[0]));
+	    });
+            // select just added tab
+            maintab.tabs('select', '#' + ui.panel.id);
+    }
+});*/
+//-----------------------------------------------------------------------
+
+var mydata = [{
+ id:"13",
+ invdate:"2010-09-20",
+ name:"Client 3",
+ amount:"1000",
+ tax:"1.50",
+ total:"1500",
+ note:""
+}]
+
+/*
+jQuery("#west-grid").jqGrid({
+    url: "tree.xml",
+    datatype: "xml",
+    height: "auto",
+    pager: false,
+    loadui: "disable",
+    colNames: ["id","Items","url"],
+    colModel: [
+	{name: "id",width:1,hidden:true, key:true},
+	{name: "menu", width:150, resizable: false, sortable:false},
+	{name: "url",width:1,hidden:true}
+    ],
+    treeGrid: true,
+    caption: "jqGrid Demos",
+    ExpandColumn: "menu",
+    autowidth: true,
+    //width: 180,
+    rowNum: 200,
+    ExpandColClick: true,
+    treeIcons: {leaf:'ui-icon-document-b'},
+    onSelectRow: function(rowid) {
+	var treedata = $("#west-grid").jqGrid('getRowData',rowid);
+	if(treedata.isLeaf=="true") {
+        //treedata.url
+	    var st = "#t"+treedata.id;
+	    if($(st).html() != null ) {
+		maintab.tabs('select',st);
+	    }
+	    else {
+		maintab.tabs('add',st, treedata.menu);
+		//$(st,"#tabs").load(treedata.url);
+		$.ajax({
+		    url: treedata.url,
+		    type: "GET",
+		    dataType: "html",
+		    complete : function (req, err) {
+			$(st,"#tabs").append(req.responseText);
+			try { var pageTracker = _gat._getTracker("UA-5463047-4"); pageTracker._trackPageview(); } catch(err) {};
+			var clck = '<p style="border: 1px solid; background-color: lemonchiffon; width:654px;height:25px;margin-bottom: 8px;padding-top: 8px;text-align: center">';
+			clck += '<b>Please, support the jqGrid project by clicking on our sponsors ad! </b></p>'; 
+			var fs = '<iframe src="adds.html" style="width:336px; height:290px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0"/>\
+			&nbsp;&nbsp;&nbsp;&nbsp;<iframe src="adds3.html" style="width:336px; height:290px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0"/>\
+			<br/><iframe src="adds2.html" style="width:728px; height:95px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0"/><br>\
+			&nbsp;&nbsp;&nbsp;&nbsp;<iframe src="adds4.html" style="width:728px; height:95px;"scrolling="no" marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0"/>\
+			';
+			$(st,"#tabs").append(clck);
+			$(st,"#tabs").append(fs);
+		    }//Fin complete
+		});//Fin ajax
+	    }//else
+	}//If treedata
+    }//onselect
+});//jqgrid
+*/
+$("#grid").jqGrid({
+/*
+    data: mydata,
+    datatype: "local",
+    colNames: ["Name", "Country", "Continent"],
+    colModel: [{
+        name: 'name',
+        index: 'name',
+        editable: true, // set it to false if you don't want the column to be editable
+    }, {
+        name: 'country',
+        index: 'country',
+        editable: true,
+    }, {
+        name: 'continent',
+        index: 'continent',
+        editable: true,
+    }],
+    pager: '#pager',
+    'cellEdit': true, // TRUE = turns on celledit for the grid.
+    'cellsubmit' : 'clientArray',
+    editurl: 'clientArray'*/
+
+	data:mydata,
+	datatype: "local",
+   	colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
+   	colModel:[
+   		{name:'id',index:'id', width:55},
+   		{name:'invdate',index:'invdate', width:90, editable:true},
+   		{name:'name',index:'name', width:100,editable:true},
+   		{name:'amount',index:'amount', width:80, align:"right",editable:true},
+   		{name:'tax',index:'tax', width:80, align:"right",editable:true},		
+   		{name:'total',index:'total', width:80,align:"right",editable:true},		
+   		{name:'note',index:'note', width:150, sortable:false,editable:true}		
+   	],
+   	rowNum:10,
+   	rowList:[10,20,30],
+   	pager: '#grid',
+   	sortname: 'id',
+    viewrecords: true,
+    sortorder: "desc",
+	editurl: "clientArray",
+	caption: "Using navigator"
+});
+jQuery("#43rowed3").jqGrid('navGrid',"#p43rowed3",{edit:false,add:false,del:false});
+jQuery("#43rowed3").jqGrid('inlineNav',"#p43rowed3");
+
+{% endblock %}
+{% block content %}
+<table id="grid"></table>
+<div id="pager"></div>
+{% endblock %}

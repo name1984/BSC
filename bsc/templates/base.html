@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+
+<html>
+<!--Cabecera------------------------------------------------------------>
+  <head>
+    <title>{{maintitle}}</title>
+    {% load static %}
+    <link rel="icon" type="images/png" href="{% static "images/logogpa.png" %}" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--CSS------------------------------------------------------------->
+    <link rel="stylesheet" href="{% static "js/jquery-ui-1.10.3.custom/css/smoothness/jquery-ui-1.10.3.custom.css" %}" />
+    <link rel="stylesheet" href="{% static "css/skel-noscript.css" %}" />
+    <link rel="stylesheet" href="{% static "css/style.css"  %}" />
+    <link rel="stylesheet" href="{% static "css/style-desktop.css" %}" />
+    <link rel="stylesheet" href="{% static "css/style-wide.css" %}" />
+    <!--Fin CSS--------------------------------------------------------->
+    <style type="text/css">
+      /*@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,300);
+      @charset 'UTF-8';*/
+      /* Base Styles*/
+      #cssmenu,
+      #cssmenu ul,
+      #cssmenu li,
+      #cssmenu a {
+		  margin: 0;
+		  padding: 0;
+		  border: 0;
+		  list-style: none;
+		  font-weight: normal;
+		  text-decoration: none;
+		  line-height: 1;
+		  font-family: 'Open Sans', sans-serif;
+		  font-size: 14px;
+		  position: relative;
+      }
+      #cssmenu a {
+	  line-height: 1.3;
+      }
+      /*#cssmenu {
+	  width: 250px;
+      }*/
+      #cssmenu > ul > li > a {
+	  padding-right: 40px;
+	  /*font-size: 25px;
+	  font-weight: bold;*/
+	  display: block;
+	  /*background: #bd0e36;
+	  color: #ffffff;
+	  border-bottom: 1px solid #5e071b;
+	  text-transform: uppercase;*/
+      }
+      cssmenu > ul > li > a > span {
+	  /*background: #ed1144;*/
+	  padding: 10px;
+	  display: block;
+	  /*font-size: 13px;
+	  font-weight: 300;*/
+      }
+      #cssmenu > ul > li > a:hover {
+	  text-decoration: none;
+      }
+      #cssmenu > ul > li.active {
+	  border-bottom: none;
+      }
+      #cssmenu > ul > li.active > a {
+	  color: #fff;
+      }
+      #cssmenu > ul > li.active > a span {
+	  /*background: #bd0e36;*/
+      }
+      #cssmenu span.cnt {
+	  position: absolute;
+	  top: 8px;
+	  right: 15px;
+	  padding: 0;
+	  margin: 0;
+	  background: none;
+      }*/
+      /* Sub menu */
+      #cssmenu ul ul {
+	  display: none;
+      }
+      #cssmenu ul ul li {
+	  /*border: 1px solid #e0e0e0*/;
+	  border-top: 0;
+      }
+      #cssmenu ul ul a {
+	  padding: 10px;
+	  display: block;
+	  /*color: #ed1144;
+	  font-size: 13px;*/
+      }
+      #cssmenu ul ul a:hover {
+	  color: #bd0e36;
+      }
+     /* #cssmenu ul ul li.odd {
+	  background: #f4f4f4;
+      }
+      #cssmenu ul ul li.even {
+	  /*background: #fff;*/
+      }
+    </style>
+    <!--JS-------->
+    <!--jquery ui -->
+    <script src="{% static "js/jquery-ui-1.10.3.custom/js/jquery-1.9.1.js" %}"></script>
+    <script src="{% static "js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js" %}"></script>
+    <!-- Fin jquery ui -->
+    {% block librerias %}{% endblock %}
+    <script>
+    //----------------------------------------------------------------
+    //Funcion para manejo de menus con jquery-ui
+      $(document).ready(function(){
+	  //$("#menu").menu();
+    //----------------------------------------------------------------
+    //Anadir pagina actual
+	  $("#{{currentpage}}").addClass("current_page_item active");
+    //----------------------------------------------------------------
+	  $('#cssmenu > ul > li ul').each(function(index, element){
+	      var count = $(element).find('li').length;
+	      var content = '<span class="cnt">' + count + '</span>';
+	      $(element).closest('li').children('a').append(content);
+	  });
+	  
+	  $('#cssmenu > ul > li > a').click(function() {
+	      $('#cssmenu li').removeClass('active');
+	      $(this).closest('li').addClass('active');
+	
+	      var checkElement = $(this).next();
+	      if((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+		  $(this).closest('li').removeClass('active');
+		  checkElement.slideUp('normal');
+	      }
+	      if((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+		  $('#cssmenu ul ul:visible').slideUp('normal');
+		  checkElement.slideDown('normal');
+	      }
+	      if($(this).closest('li').find('ul').children().length == 0) {
+		  return true;
+	      } else {
+		  return false;	
+	      }		
+	  });
+//----------------------------------------------------------------
+//----------------------------------------------------------------
+	  {% block jquery %}{% endblock %}
+	  $("#conf > a").trigger("click");
+      });
+    </script>
+    <!-- Fin JS -->
+    <!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+    <!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
+  </head>
+<!--Fin Cabecera-------------------------------------------------------->
+<!--Cuerpo-------------------------------------------------------------->
+  <body  class="left-sidebar">
+
+    <!-- Wrapper     -->
+    <div id="wrapper">
+      <div id="loading"></div>
+
+      <!-- Content -->
+      <div id="content">
+	<div id="content-inner">
+					
+	  <!-- Post -->
+	  <article class="is-post">
+	    <header>
+	      <h2><a href="#">{{title}}</a></h2>
+	      <span class="byline">{{subtitle}}</span>
+	      <hr/>
+	    </header>
+	    {% block content %}{% endblock %}
+	    <div class="info">
+	      <span class="date">
+		<span class="month">{{month}}</span>
+		<span class="year">{{year}}</span>
+	      </span>
+	    </div>
+	  </article>
+	  <!-- Fin Post -->
+	  <!-- Pager -->
+	  <div class="pager">
+	    <!--<a href="#" class="button previous">Previous Page</a>-->
+	    <div class="pages">
+	      <a href="#" class="active">1</a>
+	      <span>&hellip;</span>
+	    </div>
+	    <a href="#" class="button next">Siguiente P&aacute;gina</a>
+	  </div>
+	  <!-- Fin Pager -->
+	</div>
+      </div>
+      <!-- Fin Content -->
+      <!-- Sidebar -->
+      <div id="sidebar">
+					
+	<!-- Logo -->
+	<div id="logo">
+	  <h1>Balanced Scorecard</h1>
+	</div>
+					
+	<!-- Nav -->
+	<nav id="nav">
+	  <div id="cssmenu">
+	    <ul>
+	      <li id="status" class="link_ref"><a class="link_ref" href="home"><span>Semáforos</span></a></li>
+	      <li id="add"><a class="link_ref" href="ingreso"><span>Ingreso Indicadores</span></a></li>
+	      <li id="conf"><a class="link_ref"><span>Configuración</span></a>
+		<ul>
+		  <li><a class="link_ref" href="mision"><span>Perspectivas</span></a></li>
+		  <li><a class="link_ref" href="mision"><span>Misi&oacute;n</span></a></li>
+		  <li><a class="link_ref" href="mision"><span>Estrat&eacute;gia</span></a></li>
+		</ul>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+
+	<!-- Search -->
+	<section class="is-search">
+	  <form method="post" action="#">
+	    <input type="text" class="text" name="search" placeholder="Search" />
+	  </form>
+	</section>
+	<!-- Copyright -->
+	<div id="copyright">
+	</div>
+      </div>
+      <!-- Fin Sidebar -->
+    </div>
+    <!-- Fin Wrapper -->
+  </body>
+<!--Fin Cuerpo---------------------------------------------------------->
+</html>

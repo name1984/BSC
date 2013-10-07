@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block jquery %}
+   $(".botonguardar").button({
+       icons: {
+	   primary: 'ui-icon ui-icon-disk'
+       },
+       label: "Guardar"
+   })
+{% endblock %} 
+{% block content %}
+<div>
+  <label for="txt_vision">Misi&oacute;n : </label></br>
+  <textarea id="txt_vision" rows="6" cols="50"></textarea></br>
+  <div class="botonguardar">Guardar</div>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends " base.html " %}
+{% block content %}
+<div>
+  <label for="txt_vision">Misi&oacute;n : </label></br>
+  <textarea id="txt_vision" rows="6" cols="50"></textarea>
+</div
+{% endblock %}

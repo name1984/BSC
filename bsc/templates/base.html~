@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+
+<html>
+<!--Cabecera------------------------------------------------------------>
+  <head>
+    <title>{{maintitle}}</title>
+    {% load static %}
+    <link rel="icon" type="images/png" href="{% static "images/logogpa.png" %}" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--CSS------------------------------------------------------------->
+      <link rel="stylesheet" href="{% static "css/skel-noscript.css" %}" />
+      <link rel="stylesheet" href="{% static "css/style.css"  %}" />
+      <link rel="stylesheet" href="{% static "css/style-desktop.css" %}" />
+      <link rel="stylesheet" href="{% static "css/style-wide.css" %}" />
+    <!--Fin CSS--------------------------------------------------------->
+    <!--JS-------->
+    <!--jquery ui -->
+    <!--link rel="stylesheet" href="{% static "js/jquery-ui-1.10.3.custom/css/smoothness/jquery-ui-1.10.3.custom.css" %}" /-->
+    <script src="{% static "js/jquery-ui-1.10.3.custom/js/jquery-1.9.1.js" %}"></script>
+    <script src="{% static "js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js" %}"></script>
+    <!-- Fin jquery ui -->
+    <script>
+    //----------------------------------------------------------------
+    //Funcion para manejo de menus con jquery-ui
+      $(function() {
+	  $("#menu").menu();
+    //----------------------------------------------------------------
+    //Anadir pagina actual
+	  $("#{{currentpage}}").addClass("current_page_item");
+      });
+    //----------------------------------------------------------------
+    </script>
+    <!-- Fin JS -->
+    <!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+    <!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
+  </head>
+<!--Fin Cabecera-------------------------------------------------------->
+<!--Cuerpo-------------------------------------------------------------->
+  <body  class="left-sidebar">
+
+    <!-- Wrapper     -->
+    <div id="wrapper">
+      <div id="loading"></div>
+
+      <!-- Content -->
+      <div id="content">
+	<div id="content-inner">
+					
+	  <!-- Post -->
+	  <article class="is-post">
+	    <header>
+	      <h2><a href="#">{{title}}</a></h2>
+	      <span class="byline">{{subtitle}}</span>
+	      <hr/>
+	    </header>
+	    {% block content %}{% endblock %}
+	    <div class="info">
+	      <span class="date">
+		<span class="month">{{month}}</span>
+		<span class="year">{{year}}</span>
+	      </span>
+	    </div>
+	  </article>
+	  <!-- Fin Post -->
+	  <!-- Pager -->
+	  <div class="pager">
+	    <!--<a href="#" class="button previous">Previous Page</a>-->
+	    <div class="pages">
+	      <a href="#" class="active">1</a>
+	      <span>&hellip;</span>
+	    </div>
+	    <a href="#" class="button next">Siguiente P&aacute;gina</a>
+	  </div>
+	  <!-- Fin Pager -->
+	</div>
+      </div>
+      <!-- Fin Content -->
+      <!-- Sidebar -->
+      <div id="sidebar">
+					
+	<!-- Logo -->
+	<div id="logo">
+	  <h1>Balanced Scorecard</h1>
+	</div>
+					
+	<!-- Nav -->
+	<nav id="nav">
+	  <ul id="menu">
+	    <li id="status" class="link_ref"><a class="link_ref" href="home">Semáforos</a></li>
+	    <li id="add"><a class="link_ref" href="ingreso">Ingreso Indicadores</a></li>
+	    <li id="conf"><a class="link_ref">Configuración</a>
+	      <ul>
+		<li class="current_page_item"><a class="link_ref" href="#">Perspectivas</a></li>
+		<li class="current_page_item"><a class="link_ref" href="mision">Misi&oacute;n</a></li>
+		<li class="current_page_item"><a class="link_ref" href="#">Estrat&eacute;gia</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	</nav>
+
+	<!-- Search -->
+	<section class="is-search">
+	  <form method="post" action="#">
+	    <input type="text" class="text" name="search" placeholder="Search" />
+	  </form>
+	</section>
+	<!-- Copyright -->
+	<div id="copyright">
+	</div>
+      </div>
+      <!-- Fin Sidebar -->
+    </div>
+    <!-- Fin Wrapper -->
+  </body>
+<!--Fin Cuerpo---------------------------------------------------------->
+</html>

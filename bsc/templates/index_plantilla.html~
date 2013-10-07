@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+
+<html>
+<!--Cabecera------------------------------------------------------------>
+  <head>
+    <title>{{title}}</title>
+    <link rel="icon" type="images/png" href={% static {path_image_logo}%} />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+  </head>
+<!--Fin Cabecera-------------------------------------------------------->
+  <body>
+  </body>
+</html>

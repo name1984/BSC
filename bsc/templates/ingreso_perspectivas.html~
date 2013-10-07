@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block jquery %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "jquery.jq.Grid-4.5.2/css/ui.jqgrid.css" %}"/>
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "jquert.jq.Grid-4.5.2/plugins/ui.multiselect.css" />   
+{% endblock %} 
+{% block content %}
+
+{% endblock %}
