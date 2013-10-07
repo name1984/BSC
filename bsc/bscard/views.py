@@ -4,7 +4,6 @@ from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse
 from time import strftime
-from bscard.models import mision
 
 def runBsc(request):
     t=get_template('base.html')
