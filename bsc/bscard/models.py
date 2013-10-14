@@ -8,3 +8,11 @@ class  mision(models.Model):
     
     def __unicode__(self):
         return self.descripcion
+
+    def __str__(self):
+        return self.descripcion
+
+    def addMision(aux_descrip, aux_empresa):
+        aux=mision(descripcion='aux_descrip', empresa='aux_empresa')
+        aux.save()
+                   

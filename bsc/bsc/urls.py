@@ -3,16 +3,18 @@ from django.contrib import admin
 
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
+from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
                        (r'^home$', 'bscard.views.runBsc'),
                        (r'^ingreso$', 'bscard.views.addKpi'),
-                       (r'^mision$', 'bscard.views.addMision'),
+                       (r'^mision$', 'bscard.views.viewMision'),
+                       (r'^cargar/$', 'bscard.views.addMision'),
                        (r'^perspectiva$', 'bscard.views.addPerspective'),
                        (r'^admin/doc', include('django.contrib.admindocs.urls')),
                        (r'^admin/', include(admin.site.urls))
+                       
                        
     # Examples:
     # url(r'^$', 'bsc.views.home', name='home'),
