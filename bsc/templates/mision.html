@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block librerias %}
+{% endblock %}
+{% block jquery %}
+//-------------------------------------
+   $(".botonguardar").button({
+       icons: {
+	   primary: 'ui-icon ui-icon-disk'
+       },
+       label: "Guardar"
+   });
+//-------------------------------------
+   $(".botonguardar").click(function() {
+	   $.ajax({
+	       type: "POST",
+	       url : "cargar/",
+	       dataType:"json",
+	       data:{
+		   "empresa":$('#id_empresa').val(),
+		   "descripcion":$('#id_descripcion').val()
+	       },
+	       success: function(data){
+		  // $('#result').append('server Response: '+ json.server_response);//
+		   alert(data.message);
+	       },
+	   });
+   });
+//-------------------------------------
+function getCookie(name) {
+        var cookieValue = null;
+        var i = 0;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (i; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    var csrftoken = getCookie('csrftoken');
+ 
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    $.ajaxSetup({
+        crossDomain: false, // obviates need for sameOrigin test
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type)) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+//-------------------------------------
+{% endblock %} 
+{% block content %}
+<div id="main">
+  <form method="post" id="myform">{% csrf_token %}
+    {{ form.as_table}}
+
+    <div>
+      <div class="botonguardar">Guardar</div>
+    </div>
+    <div id ="result"></div>
+  </form>
+</div>
+{% endblock %}
