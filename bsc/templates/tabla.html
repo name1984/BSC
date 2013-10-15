@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block librerias %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "js/jquery.jq.Grid-4.5.2/css/ui.jqgrid.css" %}"/>
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "js/jquery.jq.Grid-4.5.2/plugins/ui.multiselect.css" %}"/>
+
+ <script src="{% static "js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js" %}"></script>
+ <script src="{% static "js/jquery.layout.js" %}"></script>
+ <script src="{% static "js/jquery.jq.Grid-4.5.2/src/i18n/grid.locale-es.js" %}"></script> 
+ <script type="text/javascript">
+   $.jgrid.no_legacy_api = true;
+   $.jgrid.useJSON = true;
+ </script>
+ <script src="{% static "js/jquery.jq.Grid-4.5.2/plugins/ui.multiselect.js" %}"></script>
+ <script src="{% static "js/jquery.jq.Grid-4.5.2/src/jquery.jqGrid.js" %}"></script>    
+ <script src="{% static "js/jquery.jq.Grid-4.5.2/plugins/jquery.tablednd.js" %}"></script> 
+ <script src="{% static "js/jquery.jq.Grid-4.5.2/plugins/jquery.contextmenu.js" %}"></script>    
+{% endblock %} 
+{% block jquery %}
+//-----------------------------------------------------------------------
+
+var mydata = [{
+ id:"13",
+ invdate:"2010-09-20",
+ name:"Client 3",
+ amount:"1000",
+ tax:"1.50",
+ total:"1500",
+ note:""
+}]
+
+$("#grid").jqGrid({
+  url:"tabla.html"
+	data:mydata,
+	datatype: "xml",
+   	colNames:['empresa','mision'],
+   	rowNum:10,
+   	rowList:[10,20,30],
+   	pager: '#pager',
+   	sortname: 'empresa',
+    viewrecords: true,
+    sortorder: "desc",
+	editurl: "clientArray",
+	caption: "Using navigator"
+});
+jQuery("#grid").jqGrid('navGrid',"#pager",{edit:false,add:false,del:false});
+jQuery("#grid").jqGrid('inlineNav',"#pager");
+
+
+{% endblock %}
+{% block content %}
+<table id="grid"></table>
+<div id="pager"></div>
+{% endblock %}
