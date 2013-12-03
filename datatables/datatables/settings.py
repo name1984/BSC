@@ -68,7 +68,8 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    '/home/nestor/Desarrollo/django-trunk/datatables/static',
+    #'/home/nestor/Desarrollo/django-trunk/datatables/static',
+    '/Users/name1984/Desarrollo/BSC/datatables/static',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -108,7 +109,8 @@ ROOT_URLCONF = 'datatables.urls'
 WSGI_APPLICATION = 'datatables.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/home/nestor/Desarrollo/django-trunk/datatables/templates'
+    #'/home/nestor/Desarrollo/django-trunk/datatables/templates'
+    '/Users/name1984/Desarrollo/BSC/datatables/templates'
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
